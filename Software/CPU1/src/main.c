@@ -50,7 +50,8 @@
 #include "xil_printf.h"
 #include <sleep.h>
 #include "xil_exception.h"
-
+//#include "xadd.h"
+#include "xaddeq.h"
 #include "xparameters.h"
 #include "GPIO.h"
 
@@ -68,6 +69,30 @@ u8 ReceiveBuffer[TEST_BUFFER_SIZE];
 
 // The Instance of the Interrupt Controller Driver
 XIntc Intc;
+u32 cc;
+u32 aa;
+u32 bb;
+u32 cc;
+//XAdd addd;
+XAddeq addde;
+
+
+typedef struct{
+    u8  rst;
+    float Ts;
+    float Kp;
+    float Ki;
+    float kogr;
+    float uogr;
+    float u_max;
+    float u_min;
+    float e;
+    float u;
+    float e_old;
+    float u_old;
+    u8  Anti_windup;
+} REG_PI_t;
+REG_PI_t regu;
 
 
 u32 cc;
@@ -75,6 +100,13 @@ u32 cc;
 int main(){
     init_platform();
     Init_GPIO();
+
+    aa = 5;
+    bb = 2;
+//    XAdd_Initialize(&addd,XPAR_ADD_0_DEVICE_ID);
+    XAddeq_Initialize(&addde, XPAR_ADDEQ_0_DEVICE_ID);
+    regu.e = 123.456;
+
     Init_TIMER(&TimerCounterInst, Timer_VALUE);
     Init_UART(&Uart);
     Init_Interrupt(&Intc);
@@ -100,9 +132,10 @@ int main(){
     //	usleep(200000);
     //	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x0);
     //	usleep(200000);
+   //     XAdd_Set_a(&addd,aa);
+   //     XAdd_Set_b(&addd,bb);
 
-
-
+   // 	cc = XAdd_Get_c(&addd);
     }
     cleanup_platform();
     return 0;
@@ -114,7 +147,19 @@ float usage;
 
 void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber){
 
-//	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x01 & cnt32);
+    XAddeq_Set_e(&addde,			regu.e);
+    XAddeq_Set_Ts(&addde,		regu.Ts);
+    XAddeq_Set_Kp(&addde,		regu.Kp);
+    XAddeq_Set_Ki(&addde,		regu.Ki);
+  //  XAdde_Set_e_old(&addde,		regu.e_old);
+ //   XAdde_Set_u_old(&addde,		regu.e_old);
+//    XAdde_Set_rst_r(&addde, 	regu.rst);
+
+
+   // regu.u =  XAddeq_Get_u(&addde);
+
+
+	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x01 & cnt32);
 	count = Timer_VALUE - (0xFFFFFFFF - cnt32);
 	usage = 100.0*(float)count/(float)Timer_VALUE;
 
@@ -124,7 +169,7 @@ void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber){
 		count++;
 		xil_printf("Count value is: %x\n\r", count);
 	}*/
-//	xil_printf("-----------%d-----------\r\n",count);
+	xil_printf("-----------%d-----------\r\n",count);
 	cnt32 = XTmrCtr_GetValue(&TimerCounterInst, XPAR_AXI_TIMER_0_DEVICE_ID);
 }
 

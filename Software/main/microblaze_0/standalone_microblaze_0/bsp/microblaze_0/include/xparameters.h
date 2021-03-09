@@ -478,21 +478,21 @@
  
  
 /******************************************************************/
-/* Definitions for driver ADD */
-#define XPAR_XADD_NUM_INSTANCES 1
+/* Definitions for driver ADDEQ */
+#define XPAR_XADDEQ_NUM_INSTANCES 1
 
-/* Definitions for peripheral ADD_0 */
-#define XPAR_ADD_0_DEVICE_ID 0
-#define XPAR_ADD_0_S_AXI_CONTROL_BASEADDR 0x00020000
-#define XPAR_ADD_0_S_AXI_CONTROL_HIGHADDR 0x0002FFFF
+/* Definitions for peripheral ADDEQ_0 */
+#define XPAR_ADDEQ_0_DEVICE_ID 0
+#define XPAR_ADDEQ_0_S_AXI_CONTROL_BASEADDR 0x00030000
+#define XPAR_ADDEQ_0_S_AXI_CONTROL_HIGHADDR 0x0003FFFF
 
 
 /******************************************************************/
 
-/* Canonical definitions for peripheral ADD_0 */
-#define XPAR_XADD_0_DEVICE_ID XPAR_ADD_0_DEVICE_ID
-#define XPAR_XADD_0_S_AXI_CONTROL_BASEADDR 0x00020000
-#define XPAR_XADD_0_S_AXI_CONTROL_HIGHADDR 0x0002FFFF
+/* Canonical definitions for peripheral ADDEQ_0 */
+#define XPAR_XADDEQ_0_DEVICE_ID XPAR_ADDEQ_0_DEVICE_ID
+#define XPAR_XADDEQ_0_S_AXI_CONTROL_BASEADDR 0x00030000
+#define XPAR_XADDEQ_0_S_AXI_CONTROL_HIGHADDR 0x0003FFFF
 
 
 /******************************************************************/

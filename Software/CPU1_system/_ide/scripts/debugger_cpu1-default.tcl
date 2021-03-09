@@ -10,12 +10,12 @@
 # source F:\GitKraken\XILINX_BASYS_3\Software\CPU1_system\_ide\scripts\debugger_cpu1-default.tcl
 # 
 connect -url tcp:127.0.0.1:3121
-targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2"  && jtag_cable_name =~ "Digilent Basys3 210183A8A23CA" && jtag_device_ctx=="jsn-Basys3-210183A8A23CA-0362d093-0"}
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
 loadhw -hw F:/GitKraken/XILINX_BASYS_3/Software/main/export/main/hw/main.xsa -regs
 configparams mdm-detect-bscan-mask 2
-targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2"  && jtag_cable_name =~ "Digilent Basys3 210183A8A23CA" && jtag_device_ctx=="jsn-Basys3-210183A8A23CA-0362d093-0"}
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
 rst -system
 after 3000
-targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2"  && jtag_cable_name =~ "Digilent Basys3 210183A8A23CA" && jtag_device_ctx=="jsn-Basys3-210183A8A23CA-0362d093-0"}
+targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
 dow F:/GitKraken/XILINX_BASYS_3/Software/CPU1/Debug/CPU1.elf
 bpadd -addr &main

@@ -38,3 +38,38 @@ platform generate -domains
 platform active {main}
 platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
 platform generate -domains 
+platform generate -domains standalone_microblaze_0 
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform clean
+platform generate
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
