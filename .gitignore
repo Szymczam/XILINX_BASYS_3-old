@@ -1,0 +1,36 @@
+# Ignore everything
+# Object files
+# Linker output
+# *
+
+# But not these files...
+!.gitignore
+!.gitattributes
+.gitignore.bak
+
+
+!*.xpr
+!*.xsa
+
+*.log
+*.jou
+*.str
+
+
+*.Xil
+!/XILINX_BASYS_3
+/XILINX_BASYS_3.cache
+/XILINX_BASYS_3.gen
+/XILINX_BASYS_3.hw
+/XILINX_BASYS_3.ip_user_files
+/XILINX_BASYS_3.runs
+!/XILINX_BASYS_3.sim
+!/XILINX_BASYS_3.srcs
+
+
+
+/Software/*
+Software/.metadata
+!Software/CPU_1/
+!Software/CPU_1_system/
+
