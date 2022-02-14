@@ -61,17 +61,16 @@ module main(
 //===================================================================                       
 //                         Clocks
 //===================================================================
-	clk_div    clk_div_0	(CLK_100MHz, 0, clk_1Hz);
-	           clk_div_0	(clk_10MHz, 0, clk_10Hz);
+	clk_div    clk_div_0	(CLK_100MHz, 0, clk_1Hz),
+	           clk_div_1	(clk_10MHz, 0, clk_10Hz);
 			   defparam 	clk_div_0.div_by	= 100_000_000;
-			   defparam 	clk_div_0.div_by	= 1_000_000;
+			   defparam 	clk_div_1.div_by	= 1_000_000;
 
     clk_wiz_1 clk_wiz_1_0(
         // Clock out ports
         .clk_out1(clk_10MHz),     // output clk_out1
         // Status and control signals
         .reset(rst), // input reset
-        .locked(),       // output locked
        // Clock in ports
         .clk_in1(CLK_100MHz)
     );      
