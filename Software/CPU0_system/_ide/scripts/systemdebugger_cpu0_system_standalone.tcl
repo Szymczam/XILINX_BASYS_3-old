@@ -11,7 +11,7 @@
 # 
 connect -url tcp:127.0.0.1:3121
 targets -set -filter {jtag_cable_name =~ "Digilent Basys3 210183A8A23CA" && level==0 && jtag_device_ctx=="jsn-Basys3-210183A8A23CA-0362d093-0"}
-fpga -file F:/GitHub/XILINX_BASYS_3/Software/CPU0/_ide/bitstream/BASYS3_wrapper.bit
+fpga -file F:/GitHub/XILINX_BASYS_3/XILINX_BASYS_3.runs/impl_1/BASYS3_wrapper.bit
 targets -set -nocase -filter {name =~ "*microblaze*#0" && bscan=="USER2" }
 loadhw -hw F:/GitHub/XILINX_BASYS_3/Software/BASYS3_wrapper/export/BASYS3_wrapper/hw/BASYS3_wrapper.xsa -regs
 configparams mdm-detect-bscan-mask 2

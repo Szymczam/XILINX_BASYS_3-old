@@ -56,6 +56,9 @@
 #include "xuartlite_l.h"
 #include "xparameters.h"
 
+#include "xsysmon.h"
+
+
 #ifdef XPAR_INTC_0_DEVICE_ID
 #include "xintc.h"
 #else
@@ -99,7 +102,7 @@ u8 dane;
 
 XIntc IntcInstance;	/* The instance of the Interrupt Controller */
 
-
+float data;
 
 
 void PushButtonHandle(void *pshButton);
@@ -182,10 +185,27 @@ int SetupInterruptSystem(XUartLite *UartLitePtr)
 
 
 
+
+
+
+
+static XSysMon SysMonInst; //a sysmon instance
+u16 dataa;
+
+
+
 int main(){
 	int status;
 
     init_platform();
+
+    // Initialise XADC
+    XSysMon_Config *SysMonConfigPtr;
+    XSysMon *SysMonInstPtr = &SysMonInst;
+    SysMonConfigPtr  = XSysMon_LookupConfig(XPAR_SYSMON_0_DEVICE_ID);
+	if (SysMonConfigPtr  == NULL)		return XST_FAILURE;
+    XSysMon_CfgInitialize(SysMonInstPtr, SysMonConfigPtr, SysMonConfigPtr->BaseAddress);
+
 
 	// Initialise Push Buttons
 	status = XGpio_Initialize(&BTNInst, BTNS_DEVICE_ID);
@@ -276,12 +296,14 @@ int main(){
 
 
 
+
+
     while(1){
     	if(cnt++>0xFF) cnt = 0;
-    //	xil_printf(str, "-----------%x:-----------\r\n", cnt);
+    //	xil_printf("-----------%x:-----------\r\n", cnt);
     	//print("Hello Marek\n\r");
     	//uart_send((u8*)&str, 13);
-    	 XGpio_DiscreteWrite(&BTNtwo, GPIO_CHANNEL_0, cnt);
+
     	 if(TotalReceivedCount > 0){
     		 XUartLite_Send(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
     		 TotalReceivedCount= 0;
@@ -293,9 +315,11 @@ int main(){
     	//dane = XUartLite_Recv(&Uart, RecvBuffer, 3);
     	//9//but = XGpio_DiscreteRead(&BTNInst, GPIO_CHANNEL_0);
     	//99xil_printf("BUT : %x\r\n", but);
-
-
-    	usleep(1000000);
+    //	 xil_printf("-----------%d:-----------\r\n", (int)dataa);
+    	 dataa = XSysMon_GetAdcData(SysMonInstPtr, 0x1F);
+    	  data = ((dataa)*1000.0) /0xFFFF;
+    	 XGpio_DiscreteWrite(&BTNtwo, GPIO_CHANNEL_0, (u16)data);
+    	usleep(100000);
     }
     cleanup_platform();
     return 0;
