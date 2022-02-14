@@ -33,4 +33,5 @@
 Software/.metadata
 !Software/CPU0/
 !Software/CPU0_system/
-
+!Software/CPU1/
+!Software/CPU1_system/
