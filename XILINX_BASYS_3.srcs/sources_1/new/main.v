@@ -94,18 +94,6 @@ assign rst      = btnC;
 assign LED[15]  = btnC;
 assign LED[0]   = clk_1Hz;
 assign LED[1]   = clk_10Hz;
-/*
-  BASYS3 BASYS3_i
-       (.an(an),
-        .dp(dp),
-        .led(led),
-        .push_buttons_4bits_tri_i({btnU,btnL,btnR,btnD}),
-        .reset(btnC),
-        .seg(seg),
-        .sys_clock(CLK_100MHz),
-        .usb_uart_rxd(usb_uart_rxd),
-        .usb_uart_txd(usb_uart_txd),
-        .vauxp15(vauxp15));
-*/
+
 
 endmodule
