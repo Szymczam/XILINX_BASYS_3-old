@@ -49,62 +49,87 @@
 #include "platform.h"
 #include "xil_printf.h"
 #include <sleep.h>
-#include "xgpio.h"
 #include "xil_exception.h"
-#include "xintc.h"
-#include "xuartlite.h"
-#include "xuartlite_l.h"
+
 #include "xparameters.h"
+#include "GPIO.h"
+
+
+static volatile int TotalReceivedCount;
+static volatile int TotalSentCount;
+
 
 u8 cnt;
+#define TEST_BUFFER_SIZE 4
+u8 SendBuffer[TEST_BUFFER_SIZE];
+u8 ReceiveBuffer[TEST_BUFFER_SIZE];
 
-#define GPIO_CHANNEL_0			0x01
-#define GPIO_CHANNEL_1			0x02
 
-#define GPIO1_OUT  	  	XPAR_GPIO_0_DEVICE_ID
-#define GPIO1_IN  	  	XPAR_GPIO_1_DEVICE_ID
+// The Instance of the Interrupt Controller Driver
+XIntc Intc;
 
-XGpio Gpio1_out;
+
+
 
 int main(){
     init_platform();
+    Init_GPIO();
+    Init_UART(&Uart);
+    Init_Interrupt(&Intc);
+    Start_Interrupt();
 
-    int status;
-	status = XGpio_Initialize(&Gpio1_out, XPAR_GPIO_0_DEVICE_ID);
-	if (status != XST_SUCCESS)	return XST_FAILURE;
-    XGpio_SetDataDirection(&Gpio1_out, GPIO_CHANNEL_0, 0x00);
-
-
-
-
-
+	XUartLite_Recv(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
 
 
     while(1){
     	if(cnt++>0xFF) cnt = 0;
+
     	xil_printf("-----------%x:-----------\r\n", cnt);
     	//print("Hello Marek\n\r");
-    	//uart_send((u8*)&str, 13);
-/*
-    	 if(TotalReceivedCount > 0){
-    		 XUartLite_Send(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
-    		 TotalReceivedCount= 0;
-    		 XUartLite_Recv(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
-    	 }
-*/
+
  		//XUartLite_Recv(&UartLite, RecvBuffer, TEST_BUFFER_SIZE);
     	//uart_send((u8*)&str, 13);
     	//dane = XUartLite_Recv(&Uart, RecvBuffer, 3);
-    	//9//but = XGpio_DiscreteRead(&BTNInst, GPIO_CHANNEL_0);
-    	//99xil_printf("BUT : %x\r\n", but);
+    //	u16 but = XGpio_DiscreteRead(&Gpio1_in1, GPIO_CHANNEL_0);
+    //	xil_printf("BUT : %x\r\n", but);
     //	 xil_printf("-----------%d:-----------\r\n", (int)dataa);
     //	dataa = XSysMon_GetAdcData(SysMonInstPtr, 0x1F);
     //	data = ((dataa)*1000.0) /0xFFFF;
-    	XGpio_DiscreteWrite(&Gpio1_out, GPIO_CHANNEL_0, 1);
-    	usleep(100000);
-    	XGpio_DiscreteWrite(&Gpio1_out, GPIO_CHANNEL_0, 0);
-    	usleep(100000);
+    	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x1);
+    	usleep(200000);
+    	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x0);
+    	usleep(200000);
     }
     cleanup_platform();
     return 0;
 }
+
+
+void PushButtonHandle(void *pshButton)
+{
+	// Disable GPIO interrupts
+	XGpio_InterruptDisable(&Gpio1_in1, BTN_INT);
+
+	// Ignore additional button presses
+    XGpio* PushButton = (XGpio*) pshButton;
+    u8 btnState = XGpio_DiscreteRead(PushButton, 1);
+    xil_printf("BUT : %x\r\n", btnState);
+   // XUartLite_Send(&Uart, "BUT", 4);
+    XGpio_InterruptEnable(&Gpio1_in1, BTN_INT);
+    XGpio_InterruptClear(PushButton, 0xFF);
+}
+
+
+void SendHandler(void *CallBackRef, unsigned int EventData)
+{
+	TotalSentCount = EventData;
+
+}
+
+void RecvHandler(void *CallBackRef, unsigned int EventData)
+{
+	TotalReceivedCount = EventData;
+	XUartLite_Recv(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
+	XUartLite_Send(&Uart, ReceiveBuffer, 4);
+}
+
