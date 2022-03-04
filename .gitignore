@@ -23,11 +23,16 @@
 /XILINX_BASYS_3.gen
 /XILINX_BASYS_3.hw
 /XILINX_BASYS_3.ip_user_files
-/XILINX_BASYS_3.runs
+#/XILINX_BASYS_3.runs
 !/XILINX_BASYS_3.sim
 !/XILINX_BASYS_3.srcs
 
 
+
+/!XILINX_BASYS_3.runs/*
+XILINX_BASYS_3.runs/impl_1/
+XILINX_BASYS_3.runs/synth_1/
+XILINX_BASYS_3.runs/.jobs/
 
 /Software/*
 Software/.metadata
@@ -35,3 +40,4 @@ Software/.metadata
 !Software/CPU0_system/
 !Software/CPU1/
 !Software/CPU1_system/
+!Software/main/
