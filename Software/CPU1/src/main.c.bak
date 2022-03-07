@@ -118,7 +118,7 @@ void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber){
 		xil_printf("Count value is: %x\n\r", count);
 	}
 }
-sdfsd
+
 
 
 void PushButtonHandle(void *pshButton)
