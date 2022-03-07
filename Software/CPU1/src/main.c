@@ -74,9 +74,11 @@ XIntc Intc;
 int main(){
     init_platform();
     Init_GPIO();
+    Init_TIMER(&TimerCounterInst);
     Init_UART(&Uart);
     Init_Interrupt(&Intc);
     Start_Interrupt();
+
 
 	XUartLite_Recv(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
 
@@ -103,6 +105,20 @@ int main(){
     cleanup_platform();
     return 0;
 }
+
+
+u8 count;
+
+void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber){
+
+	XTmrCtr * InstancePtr = (XTmrCtr *)CallBackRef;
+
+	if(XTmrCtr_IsExpired(InstancePtr, TmrCtrNumber)){
+		count++;
+		xil_printf("Count value is: %x\n\r", count);
+	}
+}
+
 
 
 void PushButtonHandle(void *pshButton)

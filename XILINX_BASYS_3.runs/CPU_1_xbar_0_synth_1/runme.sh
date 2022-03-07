@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='F:/GitHub/XILINX_BASYS_3/XILINX_BASYS_3.runs/CPU_1_xbar_0_synth_1'
+HD_PWD='F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.runs/CPU_1_xbar_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

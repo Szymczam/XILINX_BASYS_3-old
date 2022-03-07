@@ -54,4 +54,10 @@ BEGIN DRIVER
  PARAMETER HW_INSTANCE = microblaze_0_local_memory_ilmb_bram_if_cntlr
 END
 
+BEGIN DRIVER
+ PARAMETER DRIVER_NAME = tmrctr
+ PARAMETER DRIVER_VER = 4.8
+ PARAMETER HW_INSTANCE = axi_timer_0
+END
+
 
