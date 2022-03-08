@@ -221,7 +221,7 @@
 #define XPAR_MICROBLAZE_0_USE_EXTENDED_FSL_INSTR 0
 #define XPAR_MICROBLAZE_0_USE_EXT_BRK 0
 #define XPAR_MICROBLAZE_0_USE_EXT_NM_BRK 0
-#define XPAR_MICROBLAZE_0_USE_FPU 0
+#define XPAR_MICROBLAZE_0_USE_FPU 1
 #define XPAR_MICROBLAZE_0_USE_HW_MUL 1
 #define XPAR_MICROBLAZE_0_USE_ICACHE 0
 #define XPAR_MICROBLAZE_0_USE_INTERRUPT 2
@@ -447,7 +447,7 @@
 #define XPAR_MICROBLAZE_USE_EXTENDED_FSL_INSTR 0
 #define XPAR_MICROBLAZE_USE_EXT_BRK 0
 #define XPAR_MICROBLAZE_USE_EXT_NM_BRK 0
-#define XPAR_MICROBLAZE_USE_FPU 0
+#define XPAR_MICROBLAZE_USE_FPU 1
 #define XPAR_MICROBLAZE_USE_HW_MUL 1
 #define XPAR_MICROBLAZE_USE_ICACHE 0
 #define XPAR_MICROBLAZE_USE_INTERRUPT 2
@@ -478,6 +478,25 @@
  
  
 /******************************************************************/
+/* Definitions for driver ADD */
+#define XPAR_XADD_NUM_INSTANCES 1
+
+/* Definitions for peripheral ADD_0 */
+#define XPAR_ADD_0_DEVICE_ID 0
+#define XPAR_ADD_0_S_AXI_CONTROL_BASEADDR 0x00020000
+#define XPAR_ADD_0_S_AXI_CONTROL_HIGHADDR 0x0002FFFF
+
+
+/******************************************************************/
+
+/* Canonical definitions for peripheral ADD_0 */
+#define XPAR_XADD_0_DEVICE_ID XPAR_ADD_0_DEVICE_ID
+#define XPAR_XADD_0_S_AXI_CONTROL_BASEADDR 0x00020000
+#define XPAR_XADD_0_S_AXI_CONTROL_HIGHADDR 0x0002FFFF
+
+
+/******************************************************************/
+
 /* Definitions for driver BRAM */
 #define XPAR_XBRAM_NUM_INSTANCES 2U
 

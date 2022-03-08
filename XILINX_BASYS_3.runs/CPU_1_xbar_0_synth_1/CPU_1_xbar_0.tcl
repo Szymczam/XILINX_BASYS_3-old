@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "CPU_1_xbar_0_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
 set_param xicom.use_bs_reader 1
 set_msg_config  -id {[BD 41-1306]}  -suppress 
 set_msg_config  -id {[BD 41-1271]}  -suppress 
@@ -90,6 +89,8 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {C:/Users/01019102/AppData/Roaming/Xilinx/Vivado/2021.2/xhub/board_store/xilinx_board_store} [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.1 [current_project]
+set_property ip_repo_paths f:/Testip [current_project]
+update_ip_catalog
 set_property ip_output_repo f:/GitHub/XILINX_BASYS_3/XILINX_BASYS_3.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }

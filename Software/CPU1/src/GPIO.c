@@ -57,7 +57,7 @@ int Init_UART(XUartLite* InstancePtr){
 
 
 
-int Init_TIMER(XTmrCtr* InstancePtr){
+int Init_TIMER(XTmrCtr* InstancePtr, u32 value){
 	int status;
 
 
@@ -67,7 +67,7 @@ int Init_TIMER(XTmrCtr* InstancePtr){
 
 	XTmrCtr_SetOptions(InstancePtr, XPAR_AXI_TIMER_0_DEVICE_ID, XTC_INT_MODE_OPTION | XTC_AUTO_RELOAD_OPTION);
 
-	XTmrCtr_SetResetValue(InstancePtr, XPAR_AXI_TIMER_0_DEVICE_ID, 0xFD050F80);
+	XTmrCtr_SetResetValue(InstancePtr, XPAR_AXI_TIMER_0_DEVICE_ID, 0xFFFFFFFF - value);
 
 	XTmrCtr_Start(InstancePtr, XPAR_AXI_TIMER_0_DEVICE_ID);
 

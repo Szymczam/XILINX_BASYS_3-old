@@ -70,8 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "CPU_1_axi_timer_0_0_synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 set_msg_config  -id {[BD 41-1306]}  -suppress 
 set_msg_config  -id {[BD 41-1271]}  -suppress 
 set_param project.vivado.isBlockSynthRun true
@@ -94,7 +92,7 @@ set_property ip_output_repo f:/GitHub/XILINX_BASYS_3/XILINX_BASYS_3.cache/ip [cu
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_ip -quiet f:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.srcs/sources_1/bd/CPU_1/ip/CPU_1_axi_timer_0_0/CPU_1_axi_timer_0_0.xci
+read_ip -quiet F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.srcs/sources_1/bd/CPU_1/ip/CPU_1_axi_timer_0_0/CPU_1_axi_timer_0_0.xci
 set_property used_in_implementation false [get_files -all f:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.gen/sources_1/bd/CPU_1/ip/CPU_1_axi_timer_0_0/CPU_1_axi_timer_0_0.xdc]
 set_property used_in_implementation false [get_files -all f:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.gen/sources_1/bd/CPU_1/ip/CPU_1_axi_timer_0_0/CPU_1_axi_timer_0_0_ooc.xdc]
 

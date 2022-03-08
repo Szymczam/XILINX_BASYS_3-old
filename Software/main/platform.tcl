@@ -26,3 +26,15 @@ platform config -updatehw {F:/GitHub/XILINX_BASYS_3/main.xsa}
 platform generate -domains 
 platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
 platform generate -domains 
+platform generate
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 
+platform active {main}
+platform config -updatehw {F:/GitKraken/XILINX_BASYS_3/main.xsa}
+platform generate -domains 

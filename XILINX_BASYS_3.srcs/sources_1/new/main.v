@@ -57,14 +57,13 @@ module main(
 	wire 				n_rst;
 
 
-
 //===================================================================                       
 //                         Clocks
 //===================================================================
 	clk_div    clk_div_0	(CLK_100MHz, 0, clk_1Hz),
 	           clk_div_1	(clk_10MHz, 0, clk_10Hz);
 			   defparam 	clk_div_0.div_by	= 100_000_000;
-			   defparam 	clk_div_1.div_by	= 1_000_000;
+			   defparam 	clk_div_1.div_by	= 100_000;
 
     clk_wiz_1 clk_wiz_1_0(
         // Clock out ports
@@ -94,6 +93,8 @@ assign rst      = btnC;
 assign LED[15]  = btnC;
 assign LED[0]   = clk_1Hz;
 assign LED[1]   = clk_10Hz;
+
+
 
 
 endmodule

@@ -2,14 +2,16 @@
 # Vivado v2021.2 (64-bit)
 # SW Build 3367213 on Tue Oct 19 02:48:09 MDT 2021
 # IP Build 3369179 on Thu Oct 21 08:25:16 MDT 2021
-# Start of session at: Mon Mar  7 15:21:54 2022
-# Process ID: 15204
+# Start of session at: Mon Mar  7 20:31:16 2022
+# Process ID: 1460
 # Current directory: F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.runs/clk_wiz_1_synth_1
 # Command line: vivado.exe -log clk_wiz_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source clk_wiz_1.tcl
 # Log file: F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.runs/clk_wiz_1_synth_1/clk_wiz_1.vds
 # Journal file: F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.runs/clk_wiz_1_synth_1\vivado.jou
-# Running On: PC_LEGION_MAREK, OS: Windows, CPU Frequency: 2208 MHz, CPU Physical cores: 6, Host memory: 17046 MB
+# Running On: PCMAREK, OS: Windows, CPU Frequency: 3696 MHz, CPU Physical cores: 6, Host memory: 34293 MB
 #-----------------------------------------------------------
 source clk_wiz_1.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:06 . Memory (MB): peak = 1332.906 ; gain = 0.000
 INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP clk_wiz_1, cache-ID = e2faab8e2044bda0.
-INFO: [Common 17-206] Exiting Vivado at Mon Mar  7 15:22:04 2022...
+CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: error renaming "F:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.runs/clk_wiz_1_synth_1/clk_wiz_1_sim_netlist.v" to "f:/GitKraken/XILINX_BASYS_3/XILINX_BASYS_3.gen/sources_1/ip/clk_wiz_1/clk_wiz_1_sim_netlist.v": permission denied
+INFO: [Common 17-206] Exiting Vivado at Mon Mar  7 20:31:31 2022...

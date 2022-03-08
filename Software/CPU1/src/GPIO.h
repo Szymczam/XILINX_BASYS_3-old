@@ -43,6 +43,6 @@ void Start_Interrupt();
 void SendHandler(void *CallBackRef, unsigned int EventData);
 void RecvHandler(void *CallBackRef, unsigned int EventData);
 int Init_UART(XUartLite* InstancePtr);
-int Init_TIMER(XTmrCtr* InstancePtr);
+int Init_TIMER(XTmrCtr* InstancePtr, u32 value);
 void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber);
 

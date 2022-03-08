@@ -54,12 +54,13 @@
 #include "xparameters.h"
 #include "GPIO.h"
 
-
+#define Timer_VALUE 100000000UL
 static volatile int TotalReceivedCount;
 static volatile int TotalSentCount;
 
 
 u8 cnt;
+u32 cnt32;
 #define TEST_BUFFER_SIZE 4
 u8 SendBuffer[TEST_BUFFER_SIZE];
 u8 ReceiveBuffer[TEST_BUFFER_SIZE];
@@ -69,12 +70,12 @@ u8 ReceiveBuffer[TEST_BUFFER_SIZE];
 XIntc Intc;
 
 
-
+u32 cc;
 
 int main(){
     init_platform();
     Init_GPIO();
-    Init_TIMER(&TimerCounterInst);
+    Init_TIMER(&TimerCounterInst, Timer_VALUE);
     Init_UART(&Uart);
     Init_Interrupt(&Intc);
     Start_Interrupt();
@@ -82,11 +83,9 @@ int main(){
 
 	XUartLite_Recv(&Uart, ReceiveBuffer, TEST_BUFFER_SIZE);
 
-
     while(1){
-    	if(cnt++>0xFF) cnt = 0;
-
-    	xil_printf("-----------%x:-----------\r\n", cnt);
+  //  	if(cnt++>0xFF) cnt = 0;
+  //  	xil_printf("-----------%x:-----------\r\n", cnt32);
     	//print("Hello Marek\n\r");
 
  		//XUartLite_Recv(&UartLite, RecvBuffer, TEST_BUFFER_SIZE);
@@ -97,28 +96,38 @@ int main(){
     //	 xil_printf("-----------%d:-----------\r\n", (int)dataa);
     //	dataa = XSysMon_GetAdcData(SysMonInstPtr, 0x1F);
     //	data = ((dataa)*1000.0) /0xFFFF;
-    	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x1);
-    	usleep(200000);
-    	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x0);
-    	usleep(200000);
+    //	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x1);
+    //	usleep(200000);
+    //	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x0);
+    //	usleep(200000);
+
+
+
     }
     cleanup_platform();
     return 0;
 }
 
 
-u8 count;
+u32 count;
+float usage;
 
 void timer_int_handler(void * CallBackRef, u8 TmrCtrNumber){
 
-	XTmrCtr * InstancePtr = (XTmrCtr *)CallBackRef;
+//	XGpio_DiscreteWrite(&Gpio0_out1, GPIO_CHANNEL_0, 0x01 & cnt32);
+	count = Timer_VALUE - (0xFFFFFFFF - cnt32);
+	usage = 100.0*(float)count/(float)Timer_VALUE;
+
+/*	XTmrCtr * InstancePtr = (XTmrCtr *)CallBackRef;
 
 	if(XTmrCtr_IsExpired(InstancePtr, TmrCtrNumber)){
 		count++;
 		xil_printf("Count value is: %x\n\r", count);
-	}
+	}*/
+//	xil_printf("-----------%d-----------\r\n",count);
+	cnt32 = XTmrCtr_GetValue(&TimerCounterInst, XPAR_AXI_TIMER_0_DEVICE_ID);
 }
-sdfsd
+
 
 
 void PushButtonHandle(void *pshButton)
